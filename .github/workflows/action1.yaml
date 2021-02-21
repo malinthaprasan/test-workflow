@@ -17,7 +17,7 @@ jobs:
     - name: show env
       run: echo $PRODUCT_APIM_TESTS
     - name: Build Product-Apim with Maven
-      run: mvn clean install
+      run: mvn clean install --file ../product-apim/pom.xml
 
   build-2:
     runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
     - name: show env
       run: echo $PRODUCT_APIM_TESTS
     - name: Build Product-Apim with Maven
-      run: mvn clean install
+      run: mvn clean install --file ../product-apim/pom.xml
 
     # - name: Set up JDK 1.8
     #   uses: actions/setup-java@v1
