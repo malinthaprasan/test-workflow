@@ -41,7 +41,7 @@ jobs:
     - name: Build Product-Apim with Maven
       run: mvn clean install --file ../product-apim/pom.xml
       env:
-        PRODUCT_APIM_TESTS: apim-CORS-tests,apim-integration-tests-samples,apim-publisher-tests,apim-store-tests,apim-integration-tests-graphql
+        PRODUCT_APIM_TESTS: apim-CORS-tests,apim-integration-tests-samples,apim-publisher-tests,apim-store-tests,apim-integration-tests-graphql,admin-rest-api-tests
 
   build-segment-3:
     runs-on: ubuntu-latest
@@ -55,7 +55,7 @@ jobs:
     - name: Build Product-Apim with Maven
       run: mvn clean install --file ../product-apim/pom.xml
       env:
-        PRODUCT_APIM_TESTS: admin-rest-api-tests,rest-api-tests,apim-mediation-tests,apim-integration-tests-without-restarts,apim-integration-tests-application-sharing,apim-JWT-integration-tests
+        PRODUCT_APIM_TESTS: rest-api-tests,apim-mediation-tests,apim-integration-tests-without-restarts,apim-integration-tests-application-sharing,apim-JWT-integration-tests,apim-urlsafe-JWT-integration-tests
 
   build-segment-4:
     runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
     - name: Build Product-Apim with Maven
       run: mvn clean install --file ../product-apim/pom.xml
       env:
-        PRODUCT_APIM_TESTS: apim-urlsafe-JWT-integration-tests,apim-integration-tests-endpoint-security,apim-integration-tests-external-idp,apim-integration-emailusername-login,apim-integration-tests-workflow
+        PRODUCT_APIM_TESTS: apim-integration-tests-endpoint-security,apim-integration-tests-external-idp,apim-integration-emailusername-login,apim-integration-tests-workflow
 
     # - name: Build Product-Apim with Maven
     #   run: mvn clean install --file ../product-apim/pom.xml
