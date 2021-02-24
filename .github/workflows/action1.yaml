@@ -8,9 +8,10 @@ jobs:
     strategy:
       matrix:
         node: [6, 8, 10]
+        test: ["t1", "t2", "t3"]
     steps:
     - name: testing
-      run: echo ${{ matrix.node }}
+      run: echo ${{ matrix.node }} ${{ matrix.test }}
 
 
   # cache-test:
