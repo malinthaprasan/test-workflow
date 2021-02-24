@@ -7,8 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [""]
-        test: [""]
         include:
         - node: 1
           test: "t1"
