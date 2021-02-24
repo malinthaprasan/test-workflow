@@ -7,8 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [6, 8, 10]
-        test: ["t1", "t2", "t3"]
+        node: []
+        test: [""]
+        include:
+        - node: 1
+          test: "t1"
+        - node: 2
+          test: "t2"
     steps:
     - name: testing
       run: echo ${{ matrix.node }} ${{ matrix.test }}
