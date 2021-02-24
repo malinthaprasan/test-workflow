@@ -3,6 +3,16 @@ name: API Manager Build with Test
 on: [push, pull_request]
 
 jobs:
+  test-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [6, 8, 10]
+    steps:
+    - name: testing
+      run: echo ${{ matrix.node }}
+
+
   # cache-test:
   #   runs-on: ubuntu-latest
   #   steps:
@@ -20,74 +30,73 @@ jobs:
   #   - name: Build Product-Apim with Maven
   #     run: mvn clean install --file ../product-apim/pom.xml -Dmaven.test.skip=true
 
+  # build-without-tests:
+  #   runs-on: ubuntu-latest
 
-  build-without-tests:
-    runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout Product-APIM 1
+  #     uses: actions/checkout@v1
+  #     with: 
+  #       repository: malinthaprasan/product-apim
+  #       ref: refs/heads/master
+  #   - name: Build Product-Apim with Maven
+  #     run: mvn clean install --file ../product-apim/pom.xml -Dmaven.test.skip=true
 
-    steps:
-    - name: Checkout Product-APIM 1
-      uses: actions/checkout@v1
-      with: 
-        repository: malinthaprasan/product-apim
-        ref: refs/heads/master
-    - name: Build Product-Apim with Maven
-      run: mvn clean install --file ../product-apim/pom.xml -Dmaven.test.skip=true
+  # build-segment-1:
+  #   runs-on: ubuntu-latest
 
-  build-segment-1:
-    runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout Product-APIM 1
+  #     uses: actions/checkout@v1
+  #     with: 
+  #       repository: malinthaprasan/product-apim
+  #       ref: refs/heads/master
+  #   - name: Build Product-Apim with Maven
+  #     run: mvn clean install --file ../product-apim/pom.xml
+  #     env:
+  #       PRODUCT_APIM_TESTS: apim-integration-tests-api-common,apim-integration-tests-api-change-endpoint,apim-integration-tests-api-product,apim-integration-tests-api-lifecycle,apim-email-secondary-userstore-tests
 
-    steps:
-    - name: Checkout Product-APIM 1
-      uses: actions/checkout@v1
-      with: 
-        repository: malinthaprasan/product-apim
-        ref: refs/heads/master
-    - name: Build Product-Apim with Maven
-      run: mvn clean install --file ../product-apim/pom.xml
-      env:
-        PRODUCT_APIM_TESTS: apim-integration-tests-api-common,apim-integration-tests-api-change-endpoint,apim-integration-tests-api-product,apim-integration-tests-api-lifecycle,apim-email-secondary-userstore-tests
+  # build-segment-2:
+  #   runs-on: ubuntu-latest
 
-  build-segment-2:
-    runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout Product-APIM 2
+  #     uses: actions/checkout@v1
+  #     with: 
+  #       repository: malinthaprasan/product-apim
+  #       ref: refs/heads/master
+  #   - name: Build Product-Apim with Maven
+  #     run: mvn clean install --file ../product-apim/pom.xml
+  #     env:
+  #       PRODUCT_APIM_TESTS: apim-CORS-tests,apim-integration-tests-samples,apim-publisher-tests,apim-store-tests,apim-integration-tests-graphql,admin-rest-api-tests
 
-    steps:
-    - name: Checkout Product-APIM 2
-      uses: actions/checkout@v1
-      with: 
-        repository: malinthaprasan/product-apim
-        ref: refs/heads/master
-    - name: Build Product-Apim with Maven
-      run: mvn clean install --file ../product-apim/pom.xml
-      env:
-        PRODUCT_APIM_TESTS: apim-CORS-tests,apim-integration-tests-samples,apim-publisher-tests,apim-store-tests,apim-integration-tests-graphql,admin-rest-api-tests
+  # build-segment-3:
+  #   runs-on: ubuntu-latest
 
-  build-segment-3:
-    runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout Product-APIM 3
+  #     uses: actions/checkout@v1
+  #     with: 
+  #       repository: malinthaprasan/product-apim
+  #       ref: refs/heads/master
+  #   - name: Build Product-Apim with Maven
+  #     run: mvn clean install --file ../product-apim/pom.xml
+  #     env:
+  #       PRODUCT_APIM_TESTS: rest-api-tests,apim-mediation-tests,apim-integration-tests-without-restarts,apim-integration-tests-application-sharing,apim-JWT-integration-tests,apim-urlsafe-JWT-integration-tests
 
-    steps:
-    - name: Checkout Product-APIM 3
-      uses: actions/checkout@v1
-      with: 
-        repository: malinthaprasan/product-apim
-        ref: refs/heads/master
-    - name: Build Product-Apim with Maven
-      run: mvn clean install --file ../product-apim/pom.xml
-      env:
-        PRODUCT_APIM_TESTS: rest-api-tests,apim-mediation-tests,apim-integration-tests-without-restarts,apim-integration-tests-application-sharing,apim-JWT-integration-tests,apim-urlsafe-JWT-integration-tests
+  # build-segment-4:
+  #   runs-on: ubuntu-latest
 
-  build-segment-4:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Product-APIM 4
-      uses: actions/checkout@v1
-      with: 
-        repository: malinthaprasan/product-apim
-        ref: refs/heads/master
-    - name: Build Product-Apim with Maven
-      run: mvn clean install --file ../product-apim/pom.xml
-      env:
-        PRODUCT_APIM_TESTS: apim-integration-tests-endpoint-security,apim-integration-tests-external-idp,apim-integration-emailusername-login,apim-integration-tests-workflow
+  #   steps:
+  #   - name: Checkout Product-APIM 4
+  #     uses: actions/checkout@v1
+  #     with: 
+  #       repository: malinthaprasan/product-apim
+  #       ref: refs/heads/master
+  #   - name: Build Product-Apim with Maven
+  #     run: mvn clean install --file ../product-apim/pom.xml
+  #     env:
+  #       PRODUCT_APIM_TESTS: apim-integration-tests-endpoint-security,apim-integration-tests-external-idp,apim-integration-emailusername-login,apim-integration-tests-workflow
 
     # - name: Build Product-Apim with Maven
     #   run: mvn clean install --file ../product-apim/pom.xml
