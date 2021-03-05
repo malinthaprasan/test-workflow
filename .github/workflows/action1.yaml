@@ -62,7 +62,7 @@ jobs:
           path: reports
       - name: Publish Test Report
         if: ${{ always() }}
-        uses: malinthaprasan/action-surefire-report@v1
+        uses: malinthaprasan/action-surefire-report@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           report_paths: 'reports/**/TEST-*.xml'
