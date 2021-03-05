@@ -35,13 +35,15 @@ jobs:
         run: mvn clean install -fae --file pom.xml
         env:
           PRODUCT_APIM_TESTS: ${{ matrix.segment }}
-      - name: Archive testng report
+      - name: Prepare upload testng report
+        run: mv project/target/surefire-reports/TEST-TestSuite.xml TEST-TestSuite_${{ matrix.id }}.xml
+      - name: Urchive testng report
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: TEST-TestSuite_${{ matrix.id }}
           path: |
-            project/target/surefire-reports/TEST-TestSuite.xml
+            TEST-TestSuite_${{ matrix.id }}.xml
           if-no-files-found: warn
 
   show-report:
