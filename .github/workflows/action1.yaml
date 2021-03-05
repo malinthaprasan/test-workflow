@@ -36,6 +36,7 @@ jobs:
         env:
           PRODUCT_APIM_TESTS: ${{ matrix.segment }}
       - name: Prepare upload testng report
+        if: always()
         run: mv project/target/surefire-reports/TEST-TestSuite.xml TEST-TestSuite_${{ matrix.id }}.xml
       - name: Urchive testng report
         if: always()
