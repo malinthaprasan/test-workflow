@@ -38,7 +38,7 @@ jobs:
       - name: Prepare upload testng report
         if: always()
         run: mv project/target/surefire-reports/TEST-TestSuite.xml TEST-TestSuite_${{ matrix.id }}.xml
-      - name: Urchive testng report
+      - name: Archive testng report
         if: always()
         uses: actions/upload-artifact@v2
         with:
@@ -66,12 +66,12 @@ jobs:
           path: reports
       - name: Display structure of downloaded files
         run: ls reports -R
-
-#      - name: Publish Test Report
-#        if: ${{ always() }}
-#        uses: scacap/action-surefire-report@v1
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish Test Report
+        if: ${{ always() }}
+        uses: scacap/action-surefire-report@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          report_paths: 'reports/TEST-*.xml'
 
   # test-matrix:
   #   runs-on: ubuntu-latest
