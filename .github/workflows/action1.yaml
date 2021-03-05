@@ -40,7 +40,7 @@ jobs:
         with:
           name: TestNGReport_${{ matrix.id }}
           path: |
-            ${{GITHUB_WORKSPACE}}/test-workflow/project/target/surefire-reports/TEST-TestSuite.xml
+            $GITHUB_WORKSPACE/test-workflow/project/target/surefire-reports/TEST-TestSuite.xml
           if-no-files-found: warn
 #      - name: Publish Test Report
 #        if: ${{ always() }}
