@@ -1,4 +1,4 @@
-name: API Manager Build with Test
+name: Build with Test
 
 on: [push, pull_request]
 
@@ -24,8 +24,14 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: Cache maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2
+          restore-keys: ${{ runner.os }}-m2
       - name: Build with tests
-        run: mvn clean install -Dcarbon.apimgt.version=$(cat ../CARBON_APIMGT_VERSION_FILE) -fae --file pom.xml
+        run: mvn clean install -fae --file pom.xml
         env:
           PRODUCT_APIM_TESTS: ${{ matrix.segment }}
 
