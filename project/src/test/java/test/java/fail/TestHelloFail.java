@@ -9,6 +9,6 @@ public class TestHelloFail {
     public void test1(){
         Hello h1 = new Hello();
         String r = h1.method();
-        Assert.assertEquals(r, "hello");
+        Assert.assertEquals(r, "hello2");
     }
 }
