@@ -34,6 +34,11 @@ jobs:
         run: mvn clean install -fae --file pom.xml
         env:
           PRODUCT_APIM_TESTS: ${{ matrix.segment }}
+      - name: Publish Test Report
+        if: ${{ always() }}
+        uses: scacap/action-surefire-report@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   # test-matrix:
   #   runs-on: ubuntu-latest
