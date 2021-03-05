@@ -59,18 +59,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: TEST-TestSuite_1
           path: reports
-      - uses: actions/download-artifact@v2
-        with:
-          name: TEST-TestSuite_2
-          path: reports
-      - uses: actions/download-artifact@v2
-        with:
-          name: TEST-TestSuite_3
-          path: reports
-      - name: Display structure of downloaded files
-        run: ls reports -R
       - name: Publish Test Report
         if: ${{ always() }}
         uses: scacap/action-surefire-report@v1
