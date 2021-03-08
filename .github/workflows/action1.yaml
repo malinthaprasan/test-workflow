@@ -51,6 +51,9 @@ jobs:
           path: |
             TEST-TestSuite_${{ matrix.id }}.xml
           if-no-files-found: warn
+      - name: Upload coverage to Codecov
+        if: always()
+        uses: codecov/codecov-action@v1
 
   show-report:
     if: always()
