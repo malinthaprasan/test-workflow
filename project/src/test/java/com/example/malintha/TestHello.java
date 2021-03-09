@@ -1,10 +1,9 @@
-package test.java.fail;
+package com.example.malintha;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import test.java.Hello;
 
-public class TestHelloFail2 {
+public class TestHello {
     @Test
     public void test1(){
         Hello h1 = new Hello();

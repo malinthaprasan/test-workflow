@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package test.java.listener;
+package com.example.malintha.listener;
 
 import org.testng.IAlterSuiteListener;
 import org.testng.xml.XmlSuite;

@@ -3,28 +3,28 @@
 <suite name="Group of group Suite" verbose="1">
 
     <listeners>
-        <listener class-name="test.java.listener.APIMAlterSuiteListener"/>
-        <listener class-name="test.java.listener.APIMTestExecutionListener"/>
+        <listener class-name="com.example.malintha.listener.APIMAlterSuiteListener"/>
+        <listener class-name="com.example.malintha.listener.APIMTestExecutionListener"/>
     </listeners>
 
     <test name="group1">
         <classes>
-            <class name="test.java.TestHello" />
-            <class name="test.java.fail.TestHelloFail" />
+            <class name="com.example.malintha.TestHello" />
+<!--            <class name="com.example.malintha.fail.TestHelloFail" />-->
         </classes>
     </test>
 
     <test name="group2">
         <classes>
-            <class name="test.java.TestHelloP1" />
-            <class name="test.java.fail.TestHelloFail2" />
+            <class name="com.example.malintha.TestHello2" />
+<!--            <class name="com.example.malintha.fail.TestHelloFail2" />-->
         </classes>
     </test>
 
     <test name="group3">
         <classes>
-            <class name="test.java.TestHello" />
-            <class name="test.java.TestHelloP1" />
+            <class name="com.example.malintha.TestHello" />
+            <class name="com.example.malintha.TestHello2" />
         </classes>
     </test>
 </suite>

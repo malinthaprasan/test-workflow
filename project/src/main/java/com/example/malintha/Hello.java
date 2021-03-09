@@ -1,4 +1,4 @@
-package test.java;
+package com.example.malintha;
 
 public class Hello {
     public String method() {
