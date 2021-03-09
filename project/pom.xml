@@ -22,7 +22,25 @@
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>coverage-report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -32,10 +50,17 @@
             <artifactId>testng</artifactId>
             <version>6.11</version>
         </dependency>
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>org.jacoco.agent</artifactId>
+            <version>${jacoco.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
+        <jacoco.version>0.8.0</jacoco.version>
     </properties>
 </project>
