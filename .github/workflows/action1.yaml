@@ -11,16 +11,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - id: 1
-            segment: group1
-          - id: 2
-            segment: group2
-          - id: 3
-            segment: group3
-      fail-fast: false
+#     strategy:
+#       matrix:
+#         include:
+#           - id: 1
+#             segment: group1
+#           - id: 2
+#             segment: group2
+#           - id: 3
+#             segment: group3
+#       fail-fast: false
     steps:
       - name: Checkout master
         uses: actions/checkout@v2
@@ -30,44 +30,49 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Cache maven packages
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2
-          restore-keys: ${{ runner.os }}-m2
-      - name: Build with tests
-        run: mvn clean install -fae --file pom.xml
-        env:
-          PRODUCT_APIM_TESTS: ${{ matrix.segment }}
-      - name: Prepare upload testng report
-        if: always()
-        run: mv project/target/surefire-reports/TEST-TestSuite.xml TEST-TestSuite_${{ matrix.id }}.xml
-      - name: Archive testng report
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: TEST-TestSuite_${{ matrix.id }}
-          path: |
-            TEST-TestSuite_${{ matrix.id }}.xml
-          if-no-files-found: warn
-      - name: Upload coverage to Codecov
-        if: always()
-        uses: codecov/codecov-action@v1
+      - name: run hostname
+        run: hostname
+      - name: run hosts
+        run: cat /etc/hosts
 
-  show-report:
-    if: always()
-    needs: build
-    runs-on: 'ubuntu-latest'
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          path: reports
-      - name: Publish Test Report
-        if: ${{ always() }}
-        uses: malinthaprasan/action-surefire-report@v1
-        with:
-          report_paths: 'reports/**/TEST-*.xml'
+#       - name: Cache maven packages
+#         uses: actions/cache@v2
+#         with:
+#           path: ~/.m2
+#           key: ${{ runner.os }}-m2
+#           restore-keys: ${{ runner.os }}-m2
+#       - name: Build with tests
+#         run: mvn clean install -fae --file pom.xml
+#         env:
+#           PRODUCT_APIM_TESTS: ${{ matrix.segment }}
+#       - name: Prepare upload testng report
+#         if: always()
+#         run: mv project/target/surefire-reports/TEST-TestSuite.xml TEST-TestSuite_${{ matrix.id }}.xml
+#       - name: Archive testng report
+#         if: always()
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: TEST-TestSuite_${{ matrix.id }}
+#           path: |
+#             TEST-TestSuite_${{ matrix.id }}.xml
+#           if-no-files-found: warn
+#       - name: Upload coverage to Codecov
+#         if: always()
+#         uses: codecov/codecov-action@v1
+
+#   show-report:
+#     if: always()
+#     needs: build
+#     runs-on: 'ubuntu-latest'
+#     steps:
+#       - uses: actions/download-artifact@v2
+#         with:
+#           path: reports
+#       - name: Publish Test Report
+#         if: ${{ always() }}
+#         uses: malinthaprasan/action-surefire-report@v1
+#         with:
+#           report_paths: 'reports/**/TEST-*.xml'
 
   # test-matrix:
   #   runs-on: ubuntu-latest
