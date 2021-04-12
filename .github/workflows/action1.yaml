@@ -32,6 +32,8 @@ jobs:
           java-version: 1.8
       - name: run hostname
         run: hostname
+      - name: fix host entry
+        run: echo "127.0.0.1 $(hostname)" >> /etc/hosts
       - name: run hosts
         run: cat /etc/hosts
 
