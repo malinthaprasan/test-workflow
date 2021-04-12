@@ -33,7 +33,7 @@ jobs:
       - name: run hostname
         run: hostname
       - name: fix host entry
-        run: echo "127.0.0.1 $(hostname)" >> /etc/hosts
+        run: sudo echo "127.0.0.1 $(hostname)" >> /etc/hosts
       - name: run hosts
         run: cat /etc/hosts
 
